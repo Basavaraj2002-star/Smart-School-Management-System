@@ -1,26 +1,29 @@
-# basavarajmali2002#
-📘 Smart School Management System  
-
 CREATE DATABASE SchoolManagementDB;
-USE SchoolManagementDB;
+GO
 
+USE SchoolManagementDB;
+GO
+
+-- Admins Table
 CREATE TABLE Admins (
-    AdminID INT IDENTITY PRIMARY KEY,
+    AdminID INT IDENTITY(1,1) PRIMARY KEY,
     Username VARCHAR(50) UNIQUE NOT NULL,
     Password VARCHAR(50) NOT NULL
 );
 
+-- Teachers Table
 CREATE TABLE Teachers (
-    TeacherID INT IDENTITY PRIMARY KEY,
+    TeacherID INT IDENTITY(1,1) PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     Phone VARCHAR(10) NOT NULL,
     Subject VARCHAR(50),
     Password VARCHAR(50) NOT NULL
 );
-select * from Students
+
+-- Students Table
 CREATE TABLE Students (
-    StudentID INT IDENTITY PRIMARY KEY,
+    StudentID INT IDENTITY(1,1) PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     Phone VARCHAR(10) NOT NULL,
@@ -29,36 +32,36 @@ CREATE TABLE Students (
     Password VARCHAR(50) NOT NULL
 );
 
+-- Attendance Table
 CREATE TABLE Attendance (
-    AttendanceID INT IDENTITY PRIMARY KEY,
-    StudentID INT,
+    AttendanceID INT IDENTITY(1,1) PRIMARY KEY,
+    StudentID INT NOT NULL,
     Date DATE,
     Status VARCHAR(10),
     FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
 );
 
+-- Marks Table
 CREATE TABLE Marks (
-    MarkID INT IDENTITY PRIMARY KEY,
-    StudentID INT,
+    MarkID INT IDENTITY(1,1) PRIMARY KEY,
+    StudentID INT NOT NULL,
     Subject VARCHAR(50),
     Marks INT,
     FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
 );
 
+-- Fees Table
 CREATE TABLE Fees (
-    FeeID INT IDENTITY PRIMARY KEY,
-    StudentID INT,
+    FeeID INT IDENTITY(1,1) PRIMARY KEY,
+    StudentID INT NOT NULL,
     TotalFee INT,
     PaidFee INT,
     FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
 );
 
-INSERT INTO Admins (Username, Password)
-VALUES ('admin', 'admin123');
-
-
+-- Parents Table
 CREATE TABLE Parents (
-    ParentID INT IDENTITY PRIMARY KEY,
+    ParentID INT IDENTITY(1,1) PRIMARY KEY,
     Name VARCHAR(100),
     Email VARCHAR(100) UNIQUE,
     Password VARCHAR(50),
@@ -66,26 +69,34 @@ CREATE TABLE Parents (
     FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
 );
 
+-- Subjects Table
 CREATE TABLE Subjects (
-    SubjectID INT IDENTITY PRIMARY KEY,
+    SubjectID INT IDENTITY(1,1) PRIMARY KEY,
     SubjectName VARCHAR(50)
 );
 
+-- Classes Table
 CREATE TABLE Classes (
-    ClassID INT IDENTITY PRIMARY KEY,
+    ClassID INT IDENTITY(1,1) PRIMARY KEY,
     ClassName VARCHAR(20)
 );
 
+-- Exam Time Table
 CREATE TABLE ExamTimeTable (
-    ExamID INT IDENTITY PRIMARY KEY,
+    ExamID INT IDENTITY(1,1) PRIMARY KEY,
     Class VARCHAR(20),
     Subject VARCHAR(50),
     ExamDate DATE,
     StartTime VARCHAR(10),
     EndTime VARCHAR(10)
 );
-select * from Teachers
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Default Admin Login
+INSERT INTO Admins (Username, Password)
+VALUES ('admin', 'admin123');
+
+# basavarajmali2002#
+📘 Smart School Management System  
 
 A web-based application built using **ASP.NET Web Forms** and **SQL Server** to digitalize school operations.  
 It provides separate modules for **Admin**, **Teacher**, and **Student** with secure role-based access.
@@ -167,6 +178,5 @@ Includes **primary keys**, **foreign keys**, and **identity columns**.
 ## 🚀 How to Run the Project
 
 ### 1️⃣ Clone the repository
-
 
 
